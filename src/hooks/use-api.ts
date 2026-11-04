@@ -93,6 +93,7 @@ export function useLogin() {
       }>("/auth/login", payload);
       return data;
     },
+    meta: { successMessage: "Welcome back!" },
     onSuccess: (data) => login(data.user, data.token),
   });
 }
@@ -112,7 +113,20 @@ export function useRegister() {
       }>("/auth/register", payload);
       return data;
     },
+    meta: { successMessage: "Your account has been created." },
     onSuccess: (data) => login(data.user, data.token),
+  });
+}
+
+export function useUpdateProfile() {
+  const setUser = useAuthStore((s) => s.setUser);
+  return useMutation({
+    mutationFn: async (payload: { name: string }) => {
+      const { data } = await api.patch<{ user: User }>("/auth/user", payload);
+      return data.user;
+    },
+    meta: { successMessage: "Profile updated successfully." },
+    onSuccess: (user) => setUser(user),
   });
 }
 
@@ -181,6 +195,9 @@ export function useUploadTransactionScreenshot() {
         { headers: { "Content-Type": "multipart/form-data" } },
       );
       return data;
+    },
+    meta: {
+      successMessage: "Payment submitted successfully. We'll review it soon.",
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["my-transactions"] }),
   });
@@ -284,6 +301,7 @@ export function useRecordProgress() {
       );
       return data;
     },
+    meta: { toastError: false },
   });
 }
 
@@ -297,6 +315,7 @@ export function useCompleteDay() {
       );
       return data;
     },
+    meta: { successMessage: "Workout completed. Great work!" },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["my-programs"] }),
   });
 }

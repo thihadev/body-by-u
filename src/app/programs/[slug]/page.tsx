@@ -6,7 +6,11 @@ import { ChevronRight, Lock, Play } from "lucide-react";
 import { AccessBadge } from "@/components/AccessBadge";
 import { Button, Card } from "@/components/ui";
 import { Cover } from "@/components/cards";
-import { useProgram, useStartProgram, useActiveSubscription } from "@/hooks/use-api";
+import {
+  useActiveSubscription,
+  useStartProgram,
+  useProgram,
+} from "@/hooks/use-api";
 import { useAuthStore } from "@/stores/auth-store";
 import { thumbOf, titleOf } from "@/lib/utils";
 import { MEMBERSHIP_ENABLED } from "@/lib/config";
@@ -39,12 +43,16 @@ export default function ProgramDetailPage() {
       router.push("/membership");
       return;
     }
+    const targetDayId = program.days?.[0]?.id;
+    if (!targetDayId) return;
+
     try {
       await start.mutateAsync(program.id);
-      router.push(`/programs/${program.slug}/days/${program.days?.[0]?.id ?? ""}`);
     } catch {
-      router.push(`/programs/${program.slug}/days/${program.days?.[0]?.id ?? ""}`);
+      return;
     }
+
+    router.push(`/programs/${program.slug}/days/${targetDayId}`);
   };
 
   return (
@@ -83,11 +91,12 @@ export default function ProgramDetailPage() {
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
         {unlocked ? (
-          <Button onClick={handleStart} disabled={start.isPending}>
-            <Play className="h-4 w-4" /> Start program
+          <Button onClick={handleStart} disabled={start.isPending || !program.days?.length}>
+            <Play className="h-4 w-4" />
+            {start.isPending ? "Starting…" : "Start program"}
           </Button>
         ) : MEMBERSHIP_ENABLED ? (
-          <Button onClick={handleStart} disabled={start.isPending}>
+          <Button onClick={handleStart}>
             <Lock className="h-4 w-4" /> Unlock with membership
           </Button>
         ) : null}
@@ -137,7 +146,8 @@ export default function ProgramDetailPage() {
             {unlocked ? (
               <Link href={`/programs/${program.slug}/days/${d.id}`}>
                 <Button size="sm" variant="outline">
-                  {d.is_rest_day ? "View" : "Start"} <ChevronRight className="h-4 w-4" />
+                  {d.is_rest_day ? "View" : "Open"}{" "}
+                  <ChevronRight className="h-4 w-4" />
                 </Button>
               </Link>
             ) : (

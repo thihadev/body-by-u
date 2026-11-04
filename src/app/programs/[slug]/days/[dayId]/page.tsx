@@ -16,13 +16,17 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import { toast } from "sonner";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { Button, Card } from "@/components/ui";
 import { api } from "@/lib/api";
 import {
   useCompleteDay,
+  useMyPrograms,
   useProgram,
   useProgramDay,
   useRecordProgress,
+  useStartProgram,
   useVideoPlayback,
 } from "@/hooks/use-api";
 import { useAuthStore } from "@/stores/auth-store";
@@ -106,13 +110,17 @@ export default function ProgramDayPage() {
   const router = useRouter();
   const user = useAuthStore((s) => s.user);
   const { data: program } = useProgram(slug);
+  const myPrograms = useMyPrograms();
   // Server-computed workout: ordered exercises + per-item locks.
   const dayQuery = useProgramDay(program?.id ?? null, dayId);
   const record = useRecordProgress();
   const completeDay = useCompleteDay();
+  const startProgram = useStartProgram();
 
   const [done, setDone] = useState<number[]>([]);
   const [dayDone, setDayDone] = useState(false);
+  const [finishingWorkout, setFinishingWorkout] = useState(false);
+  const [confirmStartOpen, setConfirmStartOpen] = useState(false);
   const [rest, setRest] = useState<{ seconds: number; next?: string } | null>(
     null,
   );
@@ -128,6 +136,11 @@ export default function ProgramDayPage() {
   const dayTitle = detail?.title || meta?.title || `Day ${dayNumber}`;
   const exercises = detail?.exercises ?? [];
   const isRestDay = detail?.is_rest_day ?? meta?.is_rest_day ?? false;
+  const isEnrolled =
+    !!program &&
+    (myPrograms.data ?? []).some(
+      (userProgram) => userProgram.program?.id === program.id,
+    );
 
   const playable = exercises.filter((it) => !it.is_locked && it.video_id);
   // Default to the first playable demo until the user picks another.
@@ -155,7 +168,7 @@ export default function ProgramDayPage() {
       ? done.filter((id) => id !== item.id)
       : [...done, item.id];
     setDone(next);
-    if (!next.includes(item.id)) return; // only record completions
+    if (!next.includes(item.id) || !isEnrolled) return;
     try {
       await record.mutateAsync({
         programId: program?.id ?? 0,
@@ -177,14 +190,53 @@ export default function ProgramDayPage() {
   };
 
   const markDayComplete = async () => {
+    if (!program || finishingWorkout) return;
+
+    setFinishingWorkout(true);
     try {
+      const enrollmentQuery = await myPrograms.refetch();
+      if (enrollmentQuery.isError) {
+        toast.error("Couldn’t check your program enrollment. Please try again.");
+        return;
+      }
+
+      const hasEnrollment = (enrollmentQuery.data ?? []).some(
+        (userProgram) => userProgram.program?.id === program.id,
+      );
+
+      if (!hasEnrollment) {
+        setConfirmStartOpen(true);
+        return;
+      }
+
       await completeDay.mutateAsync({
         programId: program?.id ?? 0,
         program_day_id: Number(dayId),
       });
       setDayDone(true);
     } catch {
+      // Mutation errors are reported by the global toast handler.
+    } finally {
+      setFinishingWorkout(false);
+    }
+  };
+
+  const confirmStartAndFinish = async () => {
+    if (!program) return;
+
+    setFinishingWorkout(true);
+    try {
+      await startProgram.mutateAsync(program.id);
+      await completeDay.mutateAsync({
+        programId: program.id,
+        program_day_id: Number(dayId),
+      });
+      setConfirmStartOpen(false);
       setDayDone(true);
+    } catch {
+      // Mutation errors are reported by the global toast handler.
+    } finally {
+      setFinishingWorkout(false);
     }
   };
 
@@ -233,7 +285,17 @@ export default function ProgramDayPage() {
   const finished = progress === 100 || dayDone;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 pb-28">
+    <>
+      <ConfirmDialog
+        open={confirmStartOpen}
+        pending={finishingWorkout || startProgram.isPending}
+        title={`Start ${program ? titleOf(program) : "this program"}?`}
+        description="Starting this program will save your progress. Finish this workout now?"
+        confirmLabel="Start & finish workout"
+        onOpenChange={setConfirmStartOpen}
+        onConfirm={confirmStartAndFinish}
+      />
+      <div className="mx-auto max-w-4xl px-4 py-12 pb-28">
       <Link
         href={`/programs/${slug}`}
         className="text-sm text-zinc-500 hover:text-lime-300"
@@ -455,10 +517,18 @@ export default function ProgramDayPage() {
           <Button
             variant="outline"
             onClick={markDayComplete}
-            disabled={completeDay.isPending}
+            disabled={
+              finishingWorkout ||
+              completeDay.isPending ||
+              startProgram.isPending
+            }
           >
             <Flag className="h-4 w-4" />
-            {completeDay.isPending ? "Saving…" : "Finish workout"}
+            {finishingWorkout ||
+            completeDay.isPending ||
+            startProgram.isPending
+              ? "Saving…"
+              : "Finish workout"}
           </Button>
         </div>
       )}
@@ -486,6 +556,7 @@ export default function ProgramDayPage() {
           onDone={() => setRest(null)}
         />
       )}
-    </div>
+      </div>
+    </>
   );
 }

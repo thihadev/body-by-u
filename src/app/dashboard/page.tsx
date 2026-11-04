@@ -11,6 +11,7 @@ import {
   useActiveSubscription,
   useMyPrograms,
   useMyTransactions,
+  useUpdateProfile,
 } from "@/hooks/use-api";
 import { useTransactionApprovedRealtime } from "@/hooks/use-realtime";
 import { useAuthStore, useHasHydrated } from "@/stores/auth-store";
@@ -34,7 +35,8 @@ function DashboardContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const hydrated = useHasHydrated();
-  const { user, setUser } = useAuthStore();
+  const user = useAuthStore((s) => s.user);
+  const updateProfile = useUpdateProfile();
   const tabParam = searchParams.get("tab");
   // URL is the single source of truth for the active tab.
   const tab: TabValue = isTabValue(tabParam) ? tabParam : "overview";
@@ -294,25 +296,33 @@ function DashboardContent() {
           <Card>
             <h2 className="font-bold text-white">Profile</h2>
             <form
+              key={user.name}
               className="mt-4 space-y-4"
               onSubmit={(e) => {
                 e.preventDefault();
                 const fd = new FormData(e.currentTarget);
-                setUser({
-                  ...user,
-                  name: String(fd.get("name") || user.name),
+                void updateProfile.mutate({
+                  name: String(fd.get("name") ?? "").trim(),
                 });
               }}
             >
               <div>
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" defaultValue={user.name} />
+                <Input
+                  id="name"
+                  name="name"
+                  required
+                  maxLength={255}
+                  defaultValue={user.name}
+                />
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" value={user.email} disabled />
               </div>
-              <Button size="sm">Save changes</Button>
+              <Button size="sm" disabled={updateProfile.isPending}>
+                {updateProfile.isPending ? "Saving…" : "Save changes"}
+              </Button>
             </form>
           </Card>
           {/* <PushSettingsCard /> */}

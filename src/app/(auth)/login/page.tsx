@@ -17,7 +17,7 @@ export default function LoginPage() {
       await login.mutateAsync(form);
       router.push("/dashboard");
     } catch {
-      // handled below via error state
+      // Mutation errors are reported by the global toast handler.
     }
   };
 
@@ -51,11 +51,6 @@ export default function LoginPage() {
               placeholder="••••••••"
             />
           </div>
-          {login.isError && (
-            <p className="text-sm text-red-400">
-              Login failed. Check your credentials or try again later.
-            </p>
-          )}
           <Button className="w-full" disabled={login.isPending}>
             {login.isPending ? "Logging in…" : "Log in"}
           </Button>

@@ -22,7 +22,7 @@ export default function RegisterPage() {
       await register.mutateAsync(form);
       router.push("/dashboard");
     } catch {
-      // surfaced via error state
+      // Mutation errors are reported by the global toast handler.
     }
   };
 
@@ -82,11 +82,6 @@ export default function RegisterPage() {
               />
             </div>
           </div>
-          {register.isError && (
-            <p className="text-sm text-red-400">
-              Registration failed. The email may already be taken.
-            </p>
-          )}
           <Button className="w-full" disabled={register.isPending}>
             {register.isPending ? "Creating account…" : "Create account"}
           </Button>

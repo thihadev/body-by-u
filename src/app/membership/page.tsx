@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
 import { CalendarClock, Check, Crown, ShieldCheck, Upload } from "lucide-react";
 import {
   Button,
@@ -25,20 +24,6 @@ import { useNotificationStore } from "@/stores/notification-store";
 import { cn, formatPrice } from "@/lib/utils";
 import { MEMBERSHIP_ENABLED } from "@/lib/config";
 import type { SubscriptionPlan } from "@/lib/types";
-
-function errorMessage(err: unknown): string {
-  if (axios.isAxiosError(err)) {
-    const data = err.response?.data as
-      | { message?: string; errors?: Record<string, string[]> }
-      | undefined;
-    const first = data?.errors ? Object.values(data.errors).flat()[0] : null;
-    if (first) return first;
-    if (data?.message) return data.message;
-    if (err.response?.status === 422)
-      return "Please check the form — some fields are invalid.";
-  }
-  return "Something went wrong. Check your connection and try again.";
-}
 
 function SummaryRow({
   label,
@@ -100,7 +85,6 @@ function MembershipStorefront() {
   const [payerPhone, setPayerPhone] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
-  const [error, setError] = useState<string | null>(null);
 
   const selectedPlan: SubscriptionPlan | null =
     plans.find((p) => p.id === selectedId) ?? plans[0] ?? null;
@@ -150,7 +134,6 @@ function MembershipStorefront() {
     e.preventDefault();
     if (!selectedPlan || !selectedMethod || !file) return;
     setStatus("submitting");
-    setError(null);
     try {
       // 1. Record the payment (pending).
       const transaction = await createTransaction.mutateAsync({
@@ -171,9 +154,8 @@ function MembershipStorefront() {
         href: "/dashboard?tab=payments",
       });
       setStatus("done");
-    } catch (err) {
+    } catch {
       setStatus("idle");
-      setError(errorMessage(err));
     }
   };
 
@@ -311,8 +293,6 @@ function MembershipStorefront() {
               </label>
             </div>
 
-            {error && <p className="text-sm text-red-400">{error}</p>}
-
             <div className="flex gap-3 pt-1">
               <Button
                 className="flex-1"
@@ -331,7 +311,6 @@ function MembershipStorefront() {
                 className="flex-1"
                 onClick={() => {
                   setStep("select");
-                  setError(null);
                 }}
               >
                 Cancel
@@ -379,7 +358,6 @@ function MembershipStorefront() {
                     type="button"
                     onClick={() => {
                       setSelectedId(plan.id);
-                      setError(null);
                     }}
                     className={cn(
                       "flex w-full cursor-pointer items-center justify-between gap-4 rounded-2xl border px-5 py-4 text-left transition-colors",
@@ -509,7 +487,6 @@ function MembershipStorefront() {
           className="flex-1"
           disabled={!selectedPlan || !selectedMethod}
           onClick={() => {
-            setError(null);
             setStep("confirm");
           }}
         >
