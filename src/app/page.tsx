@@ -75,7 +75,7 @@ export default function Home() {
                   {[
                     "Full video breakdowns",
                     "Advanced 6–8 week programs",
-                    "KB Pay / Wave Pay screenshot checkout",
+                    "KB Pay / Wave Pay checkout",
                   ].map((t) => (
                     <li key={t} className="flex gap-2">
                       <BadgeCheck className="h-4 w-4 shrink-0 text-amber-300" /> {t}
