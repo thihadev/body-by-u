@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Crown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeaturedPrograms } from "@/components/FeaturedPrograms";
-import { MEMBERSHIP_ENABLED } from "@/lib/config";
 
 export const metadata = {
   title: "Body By U — Train Anywhere",
@@ -47,16 +46,10 @@ export default function Home() {
       <FeaturedPrograms />
 
       {/* Free forever — premium band shown only when membership is enabled */}
-      <section className="border-y border-white/5 bg-white/[0.02]">
-        <div
-          className={
-            MEMBERSHIP_ENABLED
-              ? "mx-auto grid max-w-6xl gap-4 px-4 py-12 sm:px-6 md:grid-cols-2"
-              : "mx-auto max-w-xl px-4 py-12 sm:px-6"
-          }
-        >
+      <section className="border-y border-white/5">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-12 sm:px-6">
             <div className="rounded-2xl border border-white/10 p-6">
-              <h3 className="text-lg font-bold text-white">Free forever</h3>
+              <h3 className="text-lg font-bold text-white">Free </h3>
               <ul className="mt-3 space-y-2 text-sm text-zinc-400">
                 {[
                   "Beginner foundation programs",
@@ -74,10 +67,9 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-            {MEMBERSHIP_ENABLED && (
-              <div className="rounded-2xl border border-lime-400/25 bg-lime-400/[0.04] p-6">
+            <div className="rounded-2xl border border-lime-400/25 p-6">
                 <h3 className="flex items-center gap-2 text-lg font-bold text-white">
-                  <Crown className="h-5 w-5 text-amber-300" /> Premium coaching
+                  <Crown className="h-5 w-5 text-amber-300" /> Premium
                 </h3>
                 <ul className="mt-3 space-y-2 text-sm text-zinc-400">
                   {[
@@ -90,11 +82,11 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/programs" className="mt-5 inline-block">
-                  <Button size="sm">Unlock premium</Button>
-                </Link>
-              </div>
-            )}
+                
+                <Button size="sm" disabled className="mt-5">
+                  Coming soon
+                </Button>
+            </div>
         </div>
       </section>
     </div>

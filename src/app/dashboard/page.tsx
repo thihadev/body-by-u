@@ -20,7 +20,7 @@ import { MEMBERSHIP_ENABLED } from "@/lib/config";
 const tabs = [
   { value: "overview", label: "Overview", icon: Play },
   { value: "programs", label: "My Programs", icon: Play },
-  { value: "payments", label: "Payments", icon: Package },
+  // { value: "payments", label: "Payments", icon: Package },
   { value: "settings", label: "Settings", icon: Settings },
 ] as const;
 
@@ -39,9 +39,9 @@ function DashboardContent() {
   // URL is the single source of truth for the active tab.
   const tab: TabValue = isTabValue(tabParam) ? tabParam : "overview";
   const myPrograms = useMyPrograms();
-  const myTransactions = useMyTransactions();
-  const { activeSubscription } = useActiveSubscription();
-  const payments = myTransactions.data ?? [];
+  // const myTransactions = useMyTransactions();
+  // const { activeSubscription } = useActiveSubscription();
+  // const payments = myTransactions.data ?? [];
   const approvalEvent = useTransactionApprovedRealtime();
 
   const setTab = (value: TabValue) => {
@@ -116,7 +116,7 @@ function DashboardContent() {
               {myPrograms.data?.length ?? 0}
             </p>
           </Card>
-          <Card className="border-amber-400/30 sm:col-span-2 md:col-span-1">
+          {/* <Card className="border-amber-400/30 sm:col-span-2 md:col-span-1">
             <p className="flex items-center gap-1.5 text-xs tracking-widest text-amber-300 uppercase">
               <Crown className="h-3.5 w-3.5" /> Membership
             </p>
@@ -161,7 +161,7 @@ function DashboardContent() {
                 </p>
               </>
             )}
-          </Card>
+          </Card> */}
         </div>
       )}
 
@@ -227,7 +227,7 @@ function DashboardContent() {
         </div>
       )}
 
-      {tab === "payments" && (
+      {/* {tab === "payments" && (
         <div className="mt-6 space-y-3">
           {myTransactions.isLoading && <LoadingState label="Loading payments…" />}
           {myTransactions.isError && (
@@ -287,7 +287,7 @@ function DashboardContent() {
             </Card>
           )}
         </div>
-      )}
+      )} */}
 
       {tab === "settings" && (
         <div className="mt-6 max-w-md space-y-4">
@@ -315,7 +315,7 @@ function DashboardContent() {
               <Button size="sm">Save changes</Button>
             </form>
           </Card>
-          <PushSettingsCard />
+          {/* <PushSettingsCard /> */}
         </div>
       )}
     </div>

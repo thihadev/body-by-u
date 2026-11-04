@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
@@ -61,6 +60,21 @@ function SummaryRow({
 }
 
 export default function MembershipPage() {
+  if (!MEMBERSHIP_ENABLED) {
+    return (
+      <div className="mx-auto max-w-lg px-4 py-24 text-center">
+        <Crown className="mx-auto h-10 w-10 text-lime-300" />
+        <h1 className="mt-4 text-3xl font-extrabold text-white">
+          Membership coming soon
+        </h1>
+      </div>
+    );
+  }
+
+  return <MembershipStorefront />;
+}
+
+function MembershipStorefront() {
   const router = useRouter();
   const hydrated = useHasHydrated();
   const user = useAuthStore((s) => s.user);
@@ -101,38 +115,6 @@ export default function MembershipPage() {
           (tx.status === "pending" || tx.status === "reviewing"),
       )
     : undefined;
-
-  if (!MEMBERSHIP_ENABLED) {
-    return (
-      <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <Crown className="mx-auto h-10 w-10 text-lime-300" />
-        <h1 className="mt-4 text-3xl font-extrabold text-white">
-          Membership — coming soon
-        </h1>
-        <p className="mx-auto mt-3 max-w-md text-sm text-zinc-400">
-          Premium memberships are opening soon. Meanwhile, all our free
-          programs are yours to train with today.
-        </p>
-        <div className="mt-6 flex justify-center">
-          <Button
-            onClick={() => router.push("/programs")}
-            className="bg-lime-400 text-zinc-950 hover:bg-lime-300"
-          >
-            Browse free programs
-          </Button>
-        </div>
-        {user && (
-          <p className="mt-4 text-xs text-zinc-600">
-            Have an active membership? View it in your{" "}
-            <Link href="/dashboard" className="hover:text-lime-300">
-              dashboard
-            </Link>
-            .
-          </p>
-        )}
-      </div>
-    );
-  }
 
   if (!hydrated) {
     return (
