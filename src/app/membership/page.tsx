@@ -50,7 +50,7 @@ export default function MembershipPage() {
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
         <Crown className="mx-auto h-10 w-10 text-brand-300" />
         <h1 className="mt-4 text-3xl font-extrabold text-white">
-          Membership coming soon
+          Premium coming soon
         </h1>
       </div>
     );

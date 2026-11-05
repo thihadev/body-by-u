@@ -19,7 +19,9 @@ import { MEMBERSHIP_ENABLED } from "@/lib/config";
 const tabs = [
   { value: "overview", label: "Overview", icon: Play },
   { value: "programs", label: "My Programs", icon: Play },
-  { value: "payments", label: "Payments", icon: Package },
+  ...(MEMBERSHIP_ENABLED
+    ? [{ value: "payments", label: "Payments",icon: Package  }]
+    : []),
   { value: "settings", label: "Settings", icon: Settings },
 ] as const;
 
@@ -147,7 +149,7 @@ function DashboardContent() {
               <>
                 <p className="mt-1 text-lg font-bold text-white">Free plan</p>
                 <p className="mt-2 text-xs text-zinc-500">
-                  Membership is coming soon.
+                  Premium is coming soon.
                 </p>
               </>
             )}
