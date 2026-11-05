@@ -57,11 +57,11 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime-400">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-400">
             <Dumbbell className="h-5 w-5 text-zinc-950" />
           </span>
           <span className="text-lg font-extrabold tracking-tight text-white">
-            Body<span className="text-lime-400">By</span>U
+            Body<span className="text-brand-400">By</span>U
           </span>
         </Link>
 
@@ -100,8 +100,8 @@ export function Navbar() {
                   }}
                   className="flex cursor-pointer items-center gap-2 rounded-full border border-white/10 py-1.5 pr-3 pl-1.5 text-sm text-zinc-300 transition-colors hover:bg-white/5"
                 >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-lime-400/20">
-                    <User className="h-4 w-4 text-lime-300" />
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-400/20">
+                    <User className="h-4 w-4 text-brand-300" />
                   </span>
                   <span className="max-w-24 truncate">{user.name}</span>
                   <ChevronDown
@@ -171,7 +171,7 @@ export function Navbar() {
               </Link>
               <Link
                 href="/register"
-                className="rounded-full bg-lime-400 px-5 py-2 text-sm font-bold text-zinc-950 hover:bg-lime-300"
+                className="rounded-full bg-brand-400 px-5 py-2 text-sm font-bold text-zinc-950 transition-colors hover:brightness-110"
               >
                 Join now
               </Link>

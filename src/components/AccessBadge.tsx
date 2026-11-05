@@ -27,7 +27,7 @@ export function AccessBadge({
     return (
       <span
         className={cn(
-          "inline-flex items-center gap-1 rounded-full bg-lime-400/15 px-2.5 py-1 text-[11px] font-bold tracking-wide text-lime-300",
+          "inline-flex items-center gap-1 rounded-full bg-brand-400/15 px-2.5 py-1 text-[11px] font-bold tracking-wide text-brand-300",
           className,
         )}
       >

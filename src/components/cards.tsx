@@ -10,9 +10,9 @@ import type { AccessType } from "@/lib/types";
 /* Deterministic cover art — calm dark gradients with a soft color glow.
  * Keeps the UI lively even when the backend has no thumbnail uploaded yet. */
 const GLOWS = [
-  "rgba(163,230,53,0.28)", // lime
-  "rgba(52,211,153,0.26)", // emerald
-  "rgba(34,211,238,0.24)", // cyan
+  "rgba(110,178,204,0.28)",
+  "rgba(47,106,135,0.26)",
+  "rgba(110,178,204,0.24)",
   "rgba(251,191,36,0.24)", // amber
   "rgba(167,139,250,0.24)", // violet
   "rgba(251,113,133,0.22)", // rose
@@ -94,7 +94,7 @@ function CardShell({
     <Link
       href={href}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 transition-all hover:-translate-y-0.5 hover:border-lime-400/40 hover:shadow-[0_12px_40px_-12px_rgba(163,230,53,0.25)]",
+        "group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 transition-all hover:-translate-y-0.5 hover:border-brand-400/40 hover:shadow-[0_12px_40px_-12px_rgba(47,106,135,0.25)]",
         className,
       )}
     >
@@ -142,7 +142,7 @@ export function ProgramCard({
         }
       />
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="line-clamp-1 font-bold text-white group-hover:text-lime-300">
+        <h3 className="line-clamp-1 font-bold text-white group-hover:text-brand-300">
           {title}
         </h3>
         {description && (
@@ -153,7 +153,7 @@ export function ProgramCard({
         <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-3 text-[13px]">
           <span className="truncate text-zinc-500">{trainerName ?? ""}</span>
           {priceLabel && (
-            <span className="shrink-0 font-bold text-lime-300">{priceLabel}</span>
+            <span className="shrink-0 font-bold text-brand-300">{priceLabel}</span>
           )}
         </div>
       </div>
@@ -194,11 +194,11 @@ export function TrainerCard({
               className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
-            <Users className="relative h-7 w-7 text-lime-300" />
+            <Users className="relative h-7 w-7 text-brand-300" />
           )}
         </span>
         <span className="min-w-0">
-          <span className="block truncate font-bold text-white group-hover:text-lime-300">
+          <span className="block truncate font-bold text-white group-hover:text-brand-300">
             {name}
           </span>
           {bio && (

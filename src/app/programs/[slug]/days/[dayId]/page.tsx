@@ -84,10 +84,10 @@ function RestTimer({
   const s = left % 60;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-lime-400/30 bg-[#0a0f1e]/95 backdrop-blur">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-400/30 bg-[#0a0f1e]/95 backdrop-blur">
       <div className="mx-auto flex max-w-4xl items-center gap-3 px-4 py-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lime-400/15">
-          <Timer className="h-5 w-5 text-lime-300" />
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-400/15">
+          <Timer className="h-5 w-5 text-brand-300" />
         </span>
         <div className="min-w-0 flex-1">
           <p className="text-lg leading-none font-extrabold text-white tabular-nums">
@@ -268,7 +268,7 @@ export default function ProgramDayPage() {
   if (dayQuery.isError || (!dayQuery.isLoading && !detail && !meta)) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-12">
-        <Link href={`/programs/${slug}`} className="text-sm text-lime-300">
+        <Link href={`/programs/${slug}`} className="text-sm text-brand-300">
           ← Back to program
         </Link>
         <p className="mt-4 text-zinc-400">
@@ -298,13 +298,13 @@ export default function ProgramDayPage() {
       <div className="mx-auto max-w-4xl px-4 py-12 pb-28">
       <Link
         href={`/programs/${slug}`}
-        className="text-sm text-zinc-500 hover:text-lime-300"
+        className="text-sm text-zinc-500 hover:text-brand-300"
       >
         ← {program ? titleOf(program) : "Program"}
       </Link>
 
       {/* Workout header */}
-      <p className="mt-4 text-xs font-bold tracking-[0.2em] text-lime-400 uppercase">
+      <p className="mt-4 text-xs font-bold tracking-[0.2em] text-brand-400 uppercase">
         Day {dayNumber}
       </p>
       <h1 className="mt-1 text-3xl font-extrabold text-white">{dayTitle}</h1>
@@ -385,7 +385,7 @@ export default function ProgramDayPage() {
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-[#bef264] to-[#84cc16] transition-all"
+              className="h-full rounded-full bg-brand-300 transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -418,12 +418,12 @@ export default function ProgramDayPage() {
             return (
               <li key={item.id}>
                 <Card
-                  className={`flex items-center gap-3 sm:gap-4 ${checked ? "border-lime-400/50" : ""} ${isPlaying ? "border-lime-400/70 shadow-[0_0_30px_-10px_rgba(163,230,53,0.4)]" : ""} ${item.is_locked ? "opacity-90" : ""}`}
+                  className={`flex items-center gap-3 sm:gap-4 ${checked ? "border-brand-400/50" : ""} ${isPlaying ? "border-brand-400/70 shadow-[0_0_30px_-10px_rgba(110,178,204,0.4)]" : ""} ${item.is_locked ? "opacity-90" : ""}`}
                 >
                   <span
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold ${
                       checked
-                        ? "bg-lime-400 text-[#0a0f1e]"
+                        ? "bg-brand-400 text-zinc-950"
                         : "bg-white/5 text-zinc-300"
                     }`}
                   >
@@ -435,7 +435,7 @@ export default function ProgramDayPage() {
                         {ex?.name ?? item.variant?.name ?? `Exercise ${i + 1}`}
                       </p>
                       {item.is_free_preview && (
-                        <span className="rounded-full bg-lime-400/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-lime-300 uppercase">
+                        <span className="rounded-full bg-brand-400/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-brand-300 uppercase">
                           Preview
                         </span>
                       )}
@@ -445,7 +445,7 @@ export default function ProgramDayPage() {
                         </span>
                       )}
                     </div>
-                    <p className="mt-0.5 text-sm font-semibold text-lime-300">
+                    <p className="mt-0.5 text-sm font-semibold text-brand-300">
                       {prescription(item)}
                       {item.rest_seconds ? (
                         <span className="font-normal text-zinc-500">
@@ -464,7 +464,7 @@ export default function ProgramDayPage() {
                       {!item.is_locked && item.video_id && (
                         <button
                           onClick={() => playDemo(item.video_id as number)}
-                          className="inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-lime-300 hover:text-lime-200"
+                          className="inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-300 hover:text-brand-200"
                         >
                           <Play className="h-4 w-4" />
                           {isPlaying ? "Playing" : "Watch"}
@@ -483,7 +483,7 @@ export default function ProgramDayPage() {
                       <CheckCircle2
                         className={
                           checked
-                            ? "h-7 w-7 text-lime-400"
+                            ? "h-7 w-7 text-brand-400"
                             : "h-7 w-7 text-zinc-600 hover:text-zinc-400"
                         }
                       />
@@ -505,7 +505,7 @@ export default function ProgramDayPage() {
       {!isRestDay && exercises.length === 0 && !dayQuery.isLoading && (
         <Card className="mt-6">
           <p className="flex items-center gap-2 text-sm text-zinc-400">
-            <Dumbbell className="h-4 w-4 text-lime-400" />
+            <Dumbbell className="h-4 w-4 text-brand-400" />
             Exercises for this day are being added. Check back soon.
           </p>
         </Card>
@@ -534,13 +534,13 @@ export default function ProgramDayPage() {
       )}
 
       {(finished || isRestDay) && (
-        <div className="mt-6 rounded-2xl border border-lime-400/40 bg-lime-400/10 p-5 text-center">
-          <p className="font-bold text-lime-300">
+        <div className="mt-6 rounded-2xl border border-brand-400/40 bg-brand-400/10 p-5 text-center">
+          <p className="font-bold text-brand-300">
             {isRestDay ? "Enjoy your recovery." : "Workout complete. Nice work!"}
           </p>
           <Link
             href={`/programs/${slug}`}
-            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-lime-300"
+            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-brand-300"
           >
             Back to program <ChevronRight className="h-4 w-4" />
           </Link>

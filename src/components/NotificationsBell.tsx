@@ -64,7 +64,7 @@ export function NotificationsBell({
       >
         <Bell className="h-4 w-4" />
         {unread > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-lime-400 px-1 text-[10px] font-bold text-zinc-950">
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-400 px-1 text-[10px] font-bold text-zinc-950">
             {unread > 9 ? "9+" : unread}
           </span>
         )}
@@ -80,7 +80,7 @@ export function NotificationsBell({
               <div className="flex gap-2">
                 <button
                   onClick={markAllRead}
-                  className="cursor-pointer text-xs text-zinc-400 hover:text-lime-300"
+                  className="cursor-pointer text-xs text-zinc-400 hover:text-brand-300"
                   title="Mark all read"
                 >
                   <CheckCheck className="h-3.5 w-3.5" />
@@ -107,12 +107,12 @@ export function NotificationsBell({
                   onClick={() => handleItemClick(n.id, n.href)}
                   className={cn(
                     "block w-full cursor-pointer border-b border-white/5 px-4 py-3 text-left transition-colors last:border-0 hover:bg-white/5",
-                    !n.read && "bg-lime-400/[0.04]",
+                    !n.read && "bg-brand-400/[0.04]",
                   )}
                 >
                   <div className="flex items-start gap-2">
                     {!n.read && (
-                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-lime-400" />
+                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-400" />
                     )}
                     <div className="min-w-0 flex-1">
                       <p
@@ -143,7 +143,7 @@ export function NotificationsBell({
             <Link
               href="/dashboard?tab=payments"
               onClick={onToggle}
-              className="block border-t border-white/10 px-4 py-2.5 text-center text-xs font-semibold text-lime-300 hover:text-lime-200"
+              className="block border-t border-white/10 px-4 py-2.5 text-center text-xs font-semibold text-brand-300 hover:text-brand-200"
             >
               View all in dashboard
             </Link>

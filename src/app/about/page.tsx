@@ -28,8 +28,8 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6">
-      <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-lime-400">
-        <Dumbbell className="h-7 w-7 text-zinc-950" />
+      <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-400">
+        <Dumbbell className="h-7 w-7 text-black" />
       </span>
       <SectionTitle
         title="Fitness made for Myanmar."
@@ -48,8 +48,8 @@ export default function AboutPage() {
             key={v.title}
             className="rounded-2xl border border-white/10 bg-white/[0.03] p-6"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime-400/15">
-              <v.icon className="h-4.5 w-4.5 text-lime-300" />
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-400/15">
+              <v.icon className="h-4.5 w-4.5 text-brand-300" />
             </span>
             <p className="mt-3 font-bold text-white">{v.title}</p>
             <p className="mt-1.5 text-sm text-zinc-400">{v.text}</p>
@@ -60,7 +60,7 @@ export default function AboutPage() {
       <div className="mt-10 flex flex-col items-center gap-3">
         <Link
           href="/programs"
-          className="inline-flex h-11 items-center justify-center rounded-full bg-lime-400 px-8 text-sm font-bold text-zinc-950 transition-colors hover:bg-lime-300"
+          className="inline-flex h-11 items-center justify-center rounded-full bg-brand-400 px-8 text-sm font-bold text-zinc-950 transition-colors hover:brightness-110"
         >
           Browse free programs
         </Link>

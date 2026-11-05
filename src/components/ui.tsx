@@ -19,10 +19,10 @@ export function Button({
         size === "md" && "h-11 px-6 text-sm",
         size === "lg" && "h-13 px-8 text-base py-3.5",
         variant === "primary" &&
-          "bg-gradient-to-br from-[#bef264] to-[#84cc16] text-[#0a0f1e] hover:brightness-110",
+          "bg-brand-400 text-zinc-950 hover:brightness-110",
         variant === "secondary" && "bg-zinc-900 text-white hover:bg-zinc-700",
         variant === "outline" &&
-          "border border-zinc-700 text-zinc-100 hover:border-lime-400 hover:text-lime-300",
+          "border border-zinc-700 text-zinc-100 hover:border-brand-400 hover:text-brand-300",
         variant === "ghost" && "text-zinc-300 hover:text-white hover:bg-white/5",
         variant === "danger" && "bg-red-500 text-white hover:bg-red-400",
         className,
@@ -54,7 +54,7 @@ export function Input({
   return (
     <input
       className={cn(
-        "h-11 w-full rounded-xl border border-white/10 bg-zinc-900 px-4 text-sm text-zinc-100 placeholder:text-zinc-500 outline-none focus:border-lime-400",
+        "h-11 w-full rounded-xl border border-white/10 bg-zinc-900 px-4 text-sm text-zinc-100 placeholder:text-zinc-500 outline-none focus:border-brand-400",
         className,
       )}
       {...props}
@@ -94,7 +94,7 @@ export function LoadingState({
         className,
       )}
     >
-      <Loader2 className="h-8 w-8 animate-spin text-lime-300" />
+      <Loader2 className="h-8 w-8 animate-spin text-brand-300" />
       <p className="text-sm text-zinc-400">{label}</p>
     </div>
   );
@@ -112,7 +112,7 @@ export function SectionTitle({
   return (
     <div className="mb-8">
       {eyebrow && (
-        <p className="mb-2 text-xs font-bold tracking-[0.2em] text-lime-400 uppercase">
+        <p className="mb-2 text-xs font-bold tracking-[0.2em] text-brand-400 uppercase">
           {eyebrow}
         </p>
       )}

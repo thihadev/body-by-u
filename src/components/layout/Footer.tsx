@@ -8,11 +8,11 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime-400">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-400">
               <Dumbbell className="h-5 w-5 text-zinc-950" />
             </span>
             <span className="text-lg font-extrabold text-white">
-              Body<span className="text-lime-400">By</span>U
+              Body<span className="text-brand-400">By</span>U
             </span>
           </div>
           <p className="mt-3 max-w-sm text-sm text-zinc-400">
@@ -25,8 +25,8 @@ export function Footer() {
             Explore
           </p>
           <ul className="space-y-2 text-sm text-zinc-400">
-            <li><Link href="/programs" className="hover:text-lime-300">Programs</Link></li>
-            <li><Link href="/about" className="hover:text-lime-300">About Us</Link></li>
+            <li><Link href="/programs" className="hover:text-brand-300">Programs</Link></li>
+            <li><Link href="/about" className="hover:text-brand-300">About Us</Link></li>
           </ul>
         </div>
         <div>
@@ -34,11 +34,11 @@ export function Footer() {
             Account
           </p>
           <ul className="space-y-2 text-sm text-zinc-400">
-            <li><Link href="/login" className="hover:text-lime-300">Log in</Link></li>
+            <li><Link href="/login" className="hover:text-brand-300">Log in</Link></li>
             <GuestOnly>
-              <li><Link href="/register" className="hover:text-lime-300">Join now</Link></li>
+              <li><Link href="/register" className="hover:text-brand-300">Join now</Link></li>
             </GuestOnly>
-            <li><Link href="/dashboard" className="hover:text-lime-300">My dashboard</Link></li>
+            <li><Link href="/dashboard" className="hover:text-brand-300">My dashboard</Link></li>
           </ul>
         </div>
       </div>

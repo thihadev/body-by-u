@@ -1,10 +1,6 @@
 @import "tailwindcss";
 
-/*
- * Body By U brand theme — sampled from https://www.body-byu.com/
- * Lime accent (#a3e635 / #84cc16, highlight #bef264) on dark navy
- * surfaces (#0a0f1e page, #111827 cards).
- */
+/* Body By U blue brand palette on dark navy surfaces. */
 @theme {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
@@ -18,12 +14,17 @@
   --color-zinc-400: #94a3b8;
   --color-zinc-300: #cbd5e1;
   --color-zinc-200: #e2e8f0;
-  --color-zinc-100: #f1f5f9;
+  --color-zinc-100: #e7e7e7;
+  --color-white: #e7e7e7;
 
   /* Brand tokens */
-  --color-brand: #a3e635;
-  --color-brand-deep: #84cc16;
-  --color-brand-light: #bef264;
+  --color-brand: #5edce5;
+  --color-brand-deep: #2f6a87;
+  --color-brand-light: #8bd9e6;
+  --color-brand-200: #e7e7e7;
+  --color-brand-300: #8bd9e6;
+  --color-brand-400: #5edce5;
+  --color-brand-500: #2f6a87;
   --color-ink: #0a0f1e;
   --color-card: #111827;
   --color-card-alt: #0f172a;
@@ -35,11 +36,11 @@ html {
 
 body {
   background: #0a0f1e;
-  color: #f1f5f9;
+  color: #e7e7e7;
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 ::selection {
-  background: #a3e635;
+  background: #6eb2cc;
   color: #0a0f1e;
 }

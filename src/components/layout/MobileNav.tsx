@@ -77,8 +77,8 @@ export function MobileNav({
         ) : user ? (
           <>
             <div className="flex items-center gap-3 px-2 pb-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-lime-400/20">
-                <User className="h-4.5 w-4.5 text-lime-300" />
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-400/20">
+                <User className="h-4.5 w-4.5 text-brand-300" />
               </span>
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold text-white">
@@ -110,7 +110,7 @@ export function MobileNav({
               <Bell className="h-4 w-4 text-zinc-500" />
               Notifications
               {unread > 0 && (
-                <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-lime-400 px-1.5 text-[10px] font-bold text-zinc-950">
+                <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-400 px-1.5 text-[10px] font-bold text-zinc-950">
                   {unread > 9 ? "9+" : unread}
                 </span>
               )}
@@ -133,12 +133,12 @@ export function MobileNav({
                         }}
                         className={cn(
                           "block w-full cursor-pointer border-b border-white/5 px-3 py-2.5 text-left last:border-0 hover:bg-white/5",
-                          !n.read && "bg-lime-400/[0.04]",
+                          !n.read && "bg-brand-400/[0.04]",
                         )}
                       >
                         <div className="flex items-start gap-2">
                           {!n.read && (
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-lime-400" />
+                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400" />
                           )}
                           <div className="min-w-0 flex-1">
                             <p
@@ -166,7 +166,7 @@ export function MobileNav({
                     {unread > 0 && (
                       <button
                         onClick={markAllRead}
-                        className="flex w-full cursor-pointer items-center justify-center gap-1.5 border-t border-white/10 py-2 text-[11px] font-semibold text-lime-300"
+                        className="flex w-full cursor-pointer items-center justify-center gap-1.5 border-t border-white/10 py-2 text-[11px] font-semibold text-brand-300"
                       >
                         <CheckCheck className="h-3 w-3" /> Mark all read
                       </button>
@@ -199,7 +199,7 @@ export function MobileNav({
             <Link
               href="/register"
               onClick={onClose}
-              className="flex-1 rounded-full bg-lime-400 px-4 py-2.5 text-center text-sm font-bold text-zinc-950"
+              className="flex-1 rounded-full bg-brand-400 px-4 py-2.5 text-center text-sm font-bold text-zinc-950"
             >
               Join now
             </Link>

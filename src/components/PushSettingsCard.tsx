@@ -13,8 +13,8 @@ export function PushSettingsCard() {
   return (
     <Card>
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime-400/15">
-          <Bell className="h-5 w-5 text-lime-300" />
+        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-400/15">
+          <Bell className="h-5 w-5 text-brand-300" />
         </span>
         <div>
           <h2 className="font-bold text-white">Push notifications</h2>
@@ -27,7 +27,7 @@ export function PushSettingsCard() {
       {lastMessage && (
         <Link
           href={lastMessage.url ?? "/dashboard"}
-          className="mt-3 block rounded-xl border border-lime-400/30 bg-lime-400/10 p-3"
+          className="mt-3 block rounded-xl border border-brand-400/30 bg-brand-400/10 p-3"
         >
           <p className="text-sm font-bold text-white">{lastMessage.title}</p>
           {lastMessage.body && (
@@ -74,7 +74,7 @@ export function PushSettingsCard() {
             </Button>
           )}
           {enabled && (
-            <span className="text-xs font-semibold text-lime-300">
+            <span className="text-xs font-semibold text-brand-300">
               Enabled on this device
             </span>
           )}

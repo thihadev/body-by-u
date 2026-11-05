@@ -71,7 +71,7 @@ export default function LoginPage() {
       <p className="mt-4 text-center text-sm text-zinc-400">
         <GuestOnly>
           No account?{" "}
-          <Link href="/register" className="font-semibold text-lime-300">
+          <Link href="/register" className="font-semibold text-brand-300">
             Join now
           </Link>
         </GuestOnly>

@@ -11,7 +11,7 @@ function MoreLink({ href, children }: { href: string; children: string }) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1 text-sm font-semibold text-lime-300 hover:text-lime-200"
+      className="inline-flex items-center gap-1 text-sm font-semibold text-brand-300 hover:text-brand-200"
     >
       {children} <ArrowRight className="h-4 w-4" />
     </Link>

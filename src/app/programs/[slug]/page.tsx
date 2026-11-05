@@ -57,7 +57,7 @@ export default function ProgramDetailPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
-      <Link href="/programs" className="text-sm text-zinc-500 hover:text-lime-300">
+      <Link href="/programs" className="text-sm text-zinc-500 hover:text-brand-300">
         ← All programs
       </Link>
 
@@ -109,7 +109,7 @@ export default function ProgramDetailPage() {
               </span>
             )}
         {!unlocked && !MEMBERSHIP_ENABLED && (
-          <span className="rounded-full bg-lime-400/10 px-4 py-1.5 text-xs font-semibold text-lime-300">
+          <span className="rounded-full bg-brand-400/10 px-4 py-1.5 text-xs font-semibold text-brand-300">
             Premium program — membership coming soon
           </span>
         )}
@@ -126,7 +126,7 @@ export default function ProgramDetailPage() {
                 className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold ${
                   d.is_rest_day
                     ? "bg-sky-400/15 text-sky-300"
-                    : "bg-lime-400/15 text-lime-300"
+                    : "bg-brand-400/15 text-brand-300"
                 }`}
               >
                 {String(dayNo).padStart(2, "0")}

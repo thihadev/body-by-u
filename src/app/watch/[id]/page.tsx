@@ -54,7 +54,7 @@ export default function WatchPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
-      <Link href="/dashboard" className="text-sm text-zinc-500 hover:text-lime-300">
+      <Link href="/dashboard" className="text-sm text-zinc-500 hover:text-brand-300">
         ← Dashboard
       </Link>
       <h1 className="mt-2 text-2xl font-extrabold text-white">

@@ -37,7 +37,7 @@ function SummaryRow({
   return (
     <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
       <span className="text-zinc-400">{label} :</span>
-      <span className={cn("font-bold", accent ? "text-lime-300" : "text-white")}>
+      <span className={cn("font-bold", accent ? "text-brand-300" : "text-white")}>
         {value}
       </span>
     </div>
@@ -48,7 +48,7 @@ export default function MembershipPage() {
   if (!MEMBERSHIP_ENABLED) {
     return (
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <Crown className="mx-auto h-10 w-10 text-lime-300" />
+        <Crown className="mx-auto h-10 w-10 text-brand-300" />
         <h1 className="mt-4 text-3xl font-extrabold text-white">
           Membership coming soon
         </h1>
@@ -162,8 +162,8 @@ function MembershipStorefront() {
   if (status === "done" && selectedPlan) {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-lime-400/15">
-          <Check className="h-6 w-6 text-lime-300" />
+        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-400/15">
+          <Check className="h-6 w-6 text-brand-300" />
         </span>
         <h1 className="mt-4 text-2xl font-extrabold text-white">
           Payment submitted
@@ -191,23 +191,23 @@ function MembershipStorefront() {
           title="Your membership"
           sub="You have an active membership — every premium program is unlocked."
         />
-        <Card className="flex flex-wrap items-center justify-between gap-4 border-lime-400/30">
+        <Card className="flex flex-wrap items-center justify-between gap-4 border-brand-400/30">
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-lime-400/15">
-              <Crown className="h-6 w-6 text-lime-300" />
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/15">
+              <Crown className="h-6 w-6 text-brand-300" />
             </span>
             <div>
               <p className="font-bold text-white">
                 {activeSubscription.plan?.name ?? "Premium plan"}
               </p>
-              <span className="mt-1 inline-block rounded-full bg-lime-400/15 px-2.5 py-1 text-[11px] font-bold text-lime-300 uppercase">
+              <span className="mt-1 inline-block rounded-full bg-brand-400/15 px-2.5 py-1 text-[11px] font-bold text-brand-300 uppercase">
                 {activeSubscription.status}
               </span>
             </div>
           </div>
           <div className="text-right">
             {activeSubscription.plan && (
-              <p className="text-lg font-extrabold text-lime-300">
+              <p className="text-lg font-extrabold text-brand-300">
                 {formatPrice(
                   activeSubscription.plan.amount,
                   activeSubscription.plan.currency,
@@ -216,7 +216,7 @@ function MembershipStorefront() {
             )}
             {activeSubscription.ends_at && (
               <p className="flex items-center justify-end gap-1.5 text-xs text-zinc-400">
-                <CalendarClock className="h-3.5 w-3.5 text-lime-300" />
+                <CalendarClock className="h-3.5 w-3.5 text-brand-300" />
                 Expires{" "}
                 {new Date(activeSubscription.ends_at).toLocaleDateString()}
               </p>
@@ -276,8 +276,8 @@ function MembershipStorefront() {
 
             <div>
               <Label>Upload Your Payslip</Label>
-              <label className="mt-1 flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-white/20 bg-white/[0.02] p-8 text-center hover:border-lime-400/60">
-                <Upload className="h-6 w-6 text-lime-300" />
+              <label className="mt-1 flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-white/20 bg-white/[0.02] p-8 text-center hover:border-brand-400/60">
+                <Upload className="h-6 w-6 text-brand-300" />
                 <span className="mt-2 text-sm text-zinc-300">
                   {file ? file.name : "Click to select payslip image"}
                 </span>
@@ -362,7 +362,7 @@ function MembershipStorefront() {
                     className={cn(
                       "flex w-full cursor-pointer items-center justify-between gap-4 rounded-2xl border px-5 py-4 text-left transition-colors",
                       isSelected
-                        ? "border-lime-400/60 bg-lime-400/[0.06]"
+                        ? "border-brand-400/60 bg-brand-400/[0.06]"
                         : "border-white/10 bg-white/[0.02] hover:border-white/20",
                     )}
                   >
@@ -374,7 +374,7 @@ function MembershipStorefront() {
                         </span>
                       )}
                     </span>
-                    <span className="shrink-0 font-extrabold text-lime-300">
+                    <span className="shrink-0 font-extrabold text-brand-300">
                       {formatPrice(plan.amount, plan.currency)}
                     </span>
                   </button>
@@ -409,7 +409,7 @@ function MembershipStorefront() {
                       className={cn(
                         "flex w-full cursor-pointer items-center gap-3 rounded-2xl border px-5 py-4 text-left transition-colors",
                         isSelected
-                          ? "border-lime-400/60 bg-lime-400/[0.06]"
+                          ? "border-brand-400/60 bg-brand-400/[0.06]"
                           : "border-white/10 bg-white/[0.02] hover:border-white/20",
                       )}
                     >
@@ -430,7 +430,7 @@ function MembershipStorefront() {
                       {(m.account_number || m.account_name) && (
                         <span className="shrink-0 text-right">
                           {m.account_number && (
-                            <span className="block font-bold text-lime-300">
+                            <span className="block font-bold text-brand-300">
                               {m.account_number}
                             </span>
                           )}
@@ -466,7 +466,7 @@ function MembershipStorefront() {
           {selectedPlan && (
             <div className="mt-5">
               <p className="font-bold text-white">{selectedPlan.name}</p>
-              <p className="mt-1 text-2xl font-extrabold text-lime-300">
+              <p className="mt-1 text-2xl font-extrabold text-brand-300">
                 {formatPrice(amount, selectedPlan.currency)}
               </p>
             </div>

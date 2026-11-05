@@ -74,7 +74,7 @@ function DashboardContent() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
+    <div className="mx-auto max-w-6xl bg-[radial-gradient(ellipse_at_top,rgba(94,220,229,0.09),transparent_55%)] px-4 py-10 sm:px-6 sm:py-12">
       <h1 className="text-2xl font-extrabold text-white sm:text-3xl">
         Hey, {user.name}
       </h1>
@@ -87,8 +87,8 @@ function DashboardContent() {
             onClick={() => setTab(t.value)}
             className={`flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium sm:px-4 ${
               tab === t.value
-                ? "bg-lime-400 text-zinc-950"
-                : "border border-white/10 text-zinc-400 hover:text-white"
+                ? "bg-brand-400 text-zinc-950"
+                : "border border-white/10 bg-white/[0.03] text-zinc-300 hover:border-brand-400/40 hover:bg-brand-400/[0.07] hover:text-brand-300"
             }`}
           >
             <t.icon className="h-4 w-4" /> {t.label}
@@ -98,7 +98,7 @@ function DashboardContent() {
 
       {tab === "overview" && (
         <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          <Card>
+          <Card className="border-brand-400/20 bg-brand-400/[0.04]">
             <p className="text-xs tracking-widest text-zinc-500 uppercase">
               Active programs
             </p>
@@ -130,7 +130,7 @@ function DashboardContent() {
                     {new Date(activeSubscription.ends_at).toLocaleDateString()}
                   </p>
                 )}
-                <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-lime-400/15 px-3 py-1 text-xs font-bold text-lime-300">
+                <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-400/15 px-3 py-1 text-xs font-bold text-brand-300">
                   Active — renews after expiry
                 </p>
               </>
@@ -177,7 +177,7 @@ function DashboardContent() {
                   <span
                     className={`rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide uppercase ${
                       up.status === "active"
-                        ? "bg-lime-400/15 text-lime-300"
+                        ? "bg-brand-400/15 text-brand-300"
                         : up.status === "completed"
                           ? "bg-sky-400/15 text-sky-300"
                           : "bg-white/10 text-zinc-400"
@@ -208,7 +208,7 @@ function DashboardContent() {
             <Card>
               <p className="text-sm text-zinc-400">
                 No programs yet.{" "}
-                <Link href="/programs" className="text-lime-300">
+                <Link href="/programs" className="text-brand-300">
                   Browse programs →
                 </Link>
               </p>
@@ -251,7 +251,7 @@ function DashboardContent() {
               <span
                 className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold uppercase ${
                   tx.status === "approved"
-                    ? "bg-lime-400/15 text-lime-300"
+                    ? "bg-brand-400/15 text-brand-300"
                     : tx.status === "rejected" || tx.status === "refunded"
                       ? "bg-red-500/15 text-red-300"
                       : "bg-amber-400/15 text-amber-300"
@@ -268,7 +268,7 @@ function DashboardContent() {
                 {MEMBERSHIP_ENABLED && (
                   <>
                     {" "}
-                    <Link href="/membership" className="text-lime-300">
+                    <Link href="/membership" className="text-brand-300">
                       Choose a membership plan →
                     </Link>
                   </>
