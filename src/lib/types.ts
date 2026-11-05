@@ -227,6 +227,7 @@ export interface Transaction {
   currency: string;
   payment_method?: string;
   payment_reference?: string | null;
+  screenshot_path?: string | null;
   payer_name?: string | null;
   payer_phone?: string | null;
   admin_notes?: string | null;

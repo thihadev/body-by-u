@@ -1,10 +1,21 @@
 import axios from "axios";
 
-const baseURL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+const configuredApiURL =
+  process.env.NEXT_PUBLIC_API_URL ??
+  (process.env.NODE_ENV === "production"
+    ? "https://api.body-byu.com"
+    : "http://localhost:8000");
+
+const apiRootURL = configuredApiURL
+  .trim()
+  .replace(/\/(?:api\/)?v1\/?$/, "")
+  .replace(/\/api\/?$/, "")
+  .replace(/\/+$/, "");
+
+export const apiBaseURL = `${apiRootURL}/v1`;
 
 export const api = axios.create({
-  baseURL,
+  baseURL: apiBaseURL,
   headers: { "Content-Type": "application/json", Accept: "application/json" },
   withCredentials: false,
 });

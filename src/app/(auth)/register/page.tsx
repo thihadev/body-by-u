@@ -2,19 +2,31 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Button, Card, Input, Label } from "@/components/ui";
+import { useEffect, useState } from "react";
+import { Button, Card, Input, Label, LoadingState } from "@/components/ui";
 import { useRegister } from "@/hooks/use-api";
+import { useAuthStore, useHasHydrated } from "@/stores/auth-store";
 
 export default function RegisterPage() {
   const router = useRouter();
   const register = useRegister();
+  const user = useAuthStore((state) => state.user);
+  const hydrated = useHasHydrated();
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
     password_confirmation: "",
   });
+  const [emailError, setEmailError] = useState("");
+
+  useEffect(() => {
+    if (hydrated && user) router.replace("/dashboard");
+  }, [hydrated, user, router]);
+
+  if (!hydrated || user) {
+    return <LoadingState label="Checking your account…" />;
+  }
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,10 +62,32 @@ export default function RegisterPage() {
               id="email"
               type="email"
               required
+              autoComplete="email"
+              aria-invalid={Boolean(emailError)}
+              aria-describedby={emailError ? "email-error" : undefined}
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) => {
+                setForm({ ...form, email: e.target.value });
+                setEmailError(
+                  e.currentTarget.validity.typeMismatch
+                    ? "Enter a valid email address."
+                    : "",
+                );
+              }}
+              onBlur={(e) =>
+                setEmailError(
+                  e.currentTarget.validity.typeMismatch
+                    ? "Enter a valid email address."
+                    : "",
+                )
+              }
               placeholder="you@example.com"
             />
+            {emailError && (
+              <p id="email-error" className="mt-1.5 text-xs text-red-400">
+                {emailError}
+              </p>
+            )}
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>

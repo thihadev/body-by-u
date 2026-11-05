@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Crown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeaturedPrograms } from "@/components/FeaturedPrograms";
+import { GuestOnly } from "@/components/GuestOnly";
 
 export const metadata = {
   title: "Body By U — Train Anywhere",
@@ -61,11 +62,13 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Link href="/register" className="mt-5 inline-block">
-                <Button variant="outline" size="sm">
-                  Create free account
-                </Button>
-              </Link>
+              <GuestOnly>
+                <Link href="/register" className="mt-5 inline-block">
+                  <Button variant="outline" size="sm">
+                    Create free account
+                  </Button>
+                </Link>
+              </GuestOnly>
             </div>
             <div className="rounded-2xl border border-lime-400/25 p-6">
                 <h3 className="flex items-center gap-2 text-lg font-bold text-white">

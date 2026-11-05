@@ -2,14 +2,26 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Button, Card, Input, Label } from "@/components/ui";
+import { useEffect, useState } from "react";
+import { Button, Card, Input, Label, LoadingState } from "@/components/ui";
+import { GuestOnly } from "@/components/GuestOnly";
 import { useLogin } from "@/hooks/use-api";
+import { useAuthStore, useHasHydrated } from "@/stores/auth-store";
 
 export default function LoginPage() {
   const router = useRouter();
   const login = useLogin();
+  const user = useAuthStore((state) => state.user);
+  const hydrated = useHasHydrated();
   const [form, setForm] = useState({ email: "", password: "" });
+
+  useEffect(() => {
+    if (hydrated && user) router.replace("/dashboard");
+  }, [hydrated, user, router]);
+
+  if (!hydrated || user) {
+    return <LoadingState label="Checking your account…" />;
+  }
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,10 +69,12 @@ export default function LoginPage() {
         </form>
       </Card>
       <p className="mt-4 text-center text-sm text-zinc-400">
-        No account?{" "}
-        <Link href="/register" className="font-semibold text-lime-300">
-          Join now
-        </Link>
+        <GuestOnly>
+          No account?{" "}
+          <Link href="/register" className="font-semibold text-lime-300">
+            Join now
+          </Link>
+        </GuestOnly>
       </p>
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Dumbbell } from "lucide-react";
+import { GuestOnly } from "@/components/GuestOnly";
 
 export function Footer() {
   return (
@@ -34,7 +35,9 @@ export function Footer() {
           </p>
           <ul className="space-y-2 text-sm text-zinc-400">
             <li><Link href="/login" className="hover:text-lime-300">Log in</Link></li>
-            <li><Link href="/register" className="hover:text-lime-300">Join now</Link></li>
+            <GuestOnly>
+              <li><Link href="/register" className="hover:text-lime-300">Join now</Link></li>
+            </GuestOnly>
             <li><Link href="/dashboard" className="hover:text-lime-300">My dashboard</Link></li>
           </ul>
         </div>

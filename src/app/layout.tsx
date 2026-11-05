@@ -20,7 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="flex min-h-full flex-col bg-zinc-950 text-zinc-100">
+      <body
+        className="flex min-h-full flex-col bg-zinc-950 text-zinc-100"
+        suppressHydrationWarning
+      >
         <Providers>
           <Navbar />
           <main className="flex-1">{children}</main>
