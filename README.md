@@ -31,6 +31,16 @@ unset. In the production hosting/build environment, set
 `NEXT_PUBLIC_*` values at build time. The frontend normalizes origin-only,
 `/api`, `/v1`, and `/api/v1` values to the `/v1` API base.
 
+## SEO and public site URL
+
+Set `NEXT_PUBLIC_SITE_URL` to the canonical public frontend origin before
+building for production (for example, `https://body-byu.com`). It is used for
+canonical metadata, Open Graph URLs, `robots.txt`, and `sitemap.xml`. The
+default is `https://body-byu.com`; update it if the production domain differs.
+Published programs returned by the public API are added to the sitemap and
+receive program-specific metadata. Account, dashboard, workout session, and
+video pages are marked `noindex`.
+
 ## Realtime payment notifications
 
 The frontend subscribes to the authenticated user's private Reverb channel and

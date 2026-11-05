@@ -4,7 +4,22 @@ import { MEMBERSHIP_ENABLED } from "@/lib/config";
 import { SectionTitle } from "@/components/ui";
 
 export const metadata = {
-  title: "About Us — Body By U",
+  title: "Fitness Made for Myanmar",
+  description:
+    "Meet Body By U: a Myanmar fitness platform with trainer-designed programs, daily workouts and guidance you can follow at home or in the gym.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "Fitness Made for Myanmar",
+    description:
+      "Meet Body By U: a Myanmar fitness platform with trainer-designed programs, daily workouts and guidance you can follow at home or in the gym.",
+    url: "/about",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fitness Made for Myanmar",
+    description:
+      "Meet Body By U: a Myanmar fitness platform with trainer-designed programs, daily workouts and guidance you can follow at home or in the gym.",
+  },
 };
 
 const values = [

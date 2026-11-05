@@ -5,7 +5,22 @@ import { FeaturedPrograms } from "@/components/FeaturedPrograms";
 import { GuestOnly } from "@/components/GuestOnly";
 
 export const metadata = {
-  title: "Body By U — Train Anywhere",
+  title: "Train Anywhere. Get Stronger Every Week",
+  description:
+    "Build strength with guided workout programs, exercise form guides and coaching videos for home or gym training in Myanmar.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Train Anywhere. Get Stronger Every Week",
+    description:
+      "Build strength with guided workout programs, exercise form guides and coaching videos for home or gym training in Myanmar.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Train Anywhere. Get Stronger Every Week",
+    description:
+      "Build strength with guided workout programs, exercise form guides and coaching videos for home or gym training in Myanmar.",
+  },
 };
 
 export default function Home() {

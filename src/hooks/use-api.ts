@@ -45,9 +45,10 @@ export function usePrograms(params?: Record<string, string>) {
   });
 }
 
-export function useProgram(slug: string) {
+export function useProgram(slug: string, initialProgram?: Program) {
   return useQuery({
     queryKey: ["program", slug],
+    initialData: initialProgram,
     queryFn: () =>
       safe(async () => {
         const { data } = await api.get(`/programs/${slug}`);
