@@ -35,7 +35,7 @@ export function Footer() {
           </p>
           <ul className="space-y-2 text-sm text-zinc-400">
             <GuestOnly>
-            <li><Link href="/login" className="hover:text-brand-300">Log in</Link></li>
+              <li><Link href="/login" className="hover:text-brand-300">Log in</Link></li>
               <li><Link href="/register" className="hover:text-brand-300">Join now</Link></li>
             </GuestOnly>
             <li><Link href="/dashboard" className="hover:text-brand-300">My dashboard</Link></li>
